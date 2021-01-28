@@ -1,8 +1,8 @@
 function getUserById(userId) {
   const users = new Map();
-  users.set(1, ["Andrew", "andrew@codelapps.com", 2]);
-  users.set(2, ["Berto", "berto@japanistic.com", 1]);
-  users.set(3, ["Carlos", "carlos@rapidito.com", 1]);
+  users.set(1, [1, "andrew@codelapps.com", 2]);
+  users.set(2, [2, "berto@japanistic.com", 1]);
+  users.set(3, [3, "carlos@rapidito.com", 1]);
   return users.get(userId);
 }
 function getCompany() {
