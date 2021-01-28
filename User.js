@@ -6,13 +6,16 @@ const UserType = {
 };
 
 class User {
-  constructor(userId, email, type) {
+  constructor(userId, email, type, isEmailConfirmed = false) {
     this.userId = userId;
     this.email = email;
     this.type = type;
+    this.isEmailConfirmed = isEmailConfirmed;
   }
 
   changeEmail(newEmail, company) {
+    const message = this.canChangeEmail();
+    if (message !== null) throw message;
     if (this.email === newEmail) return;
 
     const newType = company.isEmailCorporate(newEmail)
@@ -26,6 +29,11 @@ class User {
 
     this.email = newEmail;
     this.type = newType;
+  }
+
+  canChangeEmail() {
+    if (this.isEmailConfirmed) return "Can't change a confirmed email";
+    return null;
   }
 }
 

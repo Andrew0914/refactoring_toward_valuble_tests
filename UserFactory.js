@@ -4,7 +4,8 @@ function create(data) {
   const userId = data[0];
   const email = data[1];
   const type = data[2];
-  return new User(userId, email, type);
+  const isEmailConfirmed = data[3];
+  return new User(userId, email, type, isEmailConfirmed);
 }
 
 module.exports = {

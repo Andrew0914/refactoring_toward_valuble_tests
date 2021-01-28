@@ -26,7 +26,6 @@ it("Cambiando un email sin que se cambie el tipo de usuario", () => {
   expect(sut.type).toBe(UserType.Customer);
 });
 
-
 it("Cambiando un email al mismo ", () => {
   // Arrange
   const company = new Company("codelapps.com", 1);
@@ -39,3 +38,12 @@ it("Cambiando un email al mismo ", () => {
   expect(sut.type).toBe(UserType.Customer);
 });
 
+it("Cambiando un email ya confirmado lanza excepción", () => {
+  // Arrange
+  const company = new Company("codelapps.com", 1);
+  const sut = new User(2, "pruebas@pruebas.com", UserType.Customer, true);
+  // Act - Assert
+  expect(() => {
+    sut.changeEmail("pruebas@pruebas.com", company);
+  }).toThrow("Can't change a confirmed email");
+});
