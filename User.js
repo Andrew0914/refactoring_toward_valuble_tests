@@ -1,11 +1,12 @@
-const Database = require("./Database");
-const MessageBus = require("./MessageBus");
+const { EmailChangedEvent } = require("./EmailChangedEvent");
 const UserType = {
   Customer: 1,
   Employee: 2,
 };
 
 class User {
+  emailChangedEvents = new Array();
+
   constructor(userId, email, type, isEmailConfirmed = false) {
     this.userId = userId;
     this.email = email;
@@ -29,6 +30,7 @@ class User {
 
     this.email = newEmail;
     this.type = newType;
+    this.emailChangedEvents.push(new EmailChangedEvent(this.userId, newEmail));
   }
 
   canChangeEmail() {

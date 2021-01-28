@@ -15,10 +15,13 @@ class UserController {
 
     Database.saveCompany(company);
     Database.saveUser(user);
-    MessageBus.sendEmailChangedMessage(userId, newEmail);
+    user.emailChangedEvents.forEach((event) => {
+      MessageBus.sendEmailChangedMessage(event.userId, event.email);
+    });
   }
 }
 
 // RUN
 const controller = new UserController();
-controller.changeEmail(2, "nuevo@codelapps.com");
+//controller.changeEmail(2, "nuevo@codelapps.com");
+controller.changeEmail(2, "berto@japanistic.com");
