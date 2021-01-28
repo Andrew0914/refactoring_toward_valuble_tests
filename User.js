@@ -6,34 +6,28 @@ const UserType = {
 };
 
 class User {
-  userId = "";
-  email = "";
-  type = 0;
-
-  changeEmail(userId, newEmail) {
-    const data = Database.getUserById(userId);
+  constructor(userId, email, type) {
     this.userId = userId;
-    this.email = data[1];
-    this.type = data[2];
-    if (this.email === newEmail) return;
-    const companyData = Database.getCompany();
-    const companyDomainName = companyData[0];
-    const numberOfEmployees = companyData[1];
+    this.email = email;
+    this.type = type;
+  }
+
+  changeEmail(newEmail, companyDomain, numberOfEmployees) {
+    if (this.email === newEmail) return numberOfEmployees;
     const emailDomain = newEmail.split("@")[1];
-    const isEmailCorporate = emailDomain === companyDomainName;
+    const isEmailCorporate = emailDomain === companyDomain;
     const newType = isEmailCorporate ? UserType.Employee : UserType.Customer;
     if (this.type !== newType) {
       const delta = newType === UserType.Employee ? 1 : -1;
-      const newNumber = numberOfEmployees + delta;
-      Database.saveCompany(newNumber);
+      numberOfEmployees = numberOfEmployees + delta;
     }
     this.email = newEmail;
     this.type = newType;
-    Database.saveUser(this);
-    MessageBus.sendEmailChangedMessage(this.userId, newEmail);
+    return numberOfEmployees;
   }
 }
 
+module.exports = { User };
 // RUN
-const user = new User();
-user.changeEmail(2, "nuevo_email@codelapps.com");
+/*const user = new User();
+user.changeEmail(2, "nuevo_email@codelapps.com");*/
