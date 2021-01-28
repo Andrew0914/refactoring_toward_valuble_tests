@@ -1,0 +1,22 @@
+{
+  "name": "refactoring_toward_valuble_tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andrew0914/refactoring_toward_valuble_tests.git"
+  },
+  "author": "Andrew Gonzalez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Andrew0914/refactoring_toward_valuble_tests/issues"
+  },
+  "homepage": "https://github.com/Andrew0914/refactoring_toward_valuble_tests#readme",
+  "dependencies": {
+    "jest": "^26.6.3"
+  }
+}

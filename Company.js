@@ -1,13 +1,13 @@
 class Company {
-  constructor(domainName, numberOfEmployess) {
+  constructor(domainName, numberOfEmployees) {
     this.domainName = domainName;
-    this.numberOfEmployess = numberOfEmployess;
+    this.numberOfEmployees = numberOfEmployees;
   }
 
   changeNumberOfEmployees(delta) {
-    if (this.numberOfEmployess + delta < 0)
+    if (this.numberOfEmployees + delta < 0)
       throw "Number of employees cant be negative";
-    this.numberOfEmployess += delta;
+    this.numberOfEmployees += delta;
   }
 
   isEmailCorporate(email) {

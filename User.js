@@ -23,12 +23,13 @@ class User {
       const delta = newType === UserType.Employee ? 1 : -1;
       company.changeNumberOfEmployees(delta);
     }
+
     this.email = newEmail;
     this.type = newType;
   }
 }
 
-module.exports = { User };
+module.exports = { User, UserType };
 // RUN
 /*const user = new User();
 user.changeEmail(2, "nuevo_email@codelapps.com");*/
