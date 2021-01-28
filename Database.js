@@ -9,8 +9,8 @@ function getCompany() {
   return ["codelapps.com", 1];
 }
 
-function saveCompany(number) {
-  console.log("✅ Se ha guardado el nuevo numero de empleados: " + number);
+function saveCompany(company) {
+  console.log("✅ Se ha guardado el nuevo numero de empleados: " , company);
   console.log("");
 }
 

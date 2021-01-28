@@ -12,18 +12,19 @@ class User {
     this.type = type;
   }
 
-  changeEmail(newEmail, companyDomain, numberOfEmployees) {
-    if (this.email === newEmail) return numberOfEmployees;
-    const emailDomain = newEmail.split("@")[1];
-    const isEmailCorporate = emailDomain === companyDomain;
-    const newType = isEmailCorporate ? UserType.Employee : UserType.Customer;
+  changeEmail(newEmail, company) {
+    if (this.email === newEmail) return;
+
+    const newType = company.isEmailCorporate(newEmail)
+      ? UserType.Employee
+      : UserType.Customer;
+
     if (this.type !== newType) {
       const delta = newType === UserType.Employee ? 1 : -1;
-      numberOfEmployees = numberOfEmployees + delta;
+      company.changeNumberOfEmployees(delta);
     }
     this.email = newEmail;
     this.type = newType;
-    return numberOfEmployees;
   }
 }
 

@@ -1,22 +1,19 @@
 const Database = require("./Database");
 const MessageBus = require("./MessageBus");
 const UserFactory = require("./UserFactory");
+const CompanyFactory = require("./CompanyFactory");
+const { Company } = require("./Company");
 class UserController {
   changeEmail(userId, newEmail) {
     const data = Database.getUserById(userId);
     const user = UserFactory.create(data);
 
     const companyData = Database.getCompany();
-    const companyDomainName = companyData[0];
-    const numberOfEmployees = companyData[1];
+    const company = CompanyFactory.create(companyData);
 
-    const newNumberOfEmployees = user.changeEmail(
-      newEmail,
-      companyDomainName,
-      numberOfEmployees
-    );
+    user.changeEmail(newEmail, company);
 
-    Database.saveCompany(newNumberOfEmployees);
+    Database.saveCompany(company);
     Database.saveUser(user);
     MessageBus.sendEmailChangedMessage(userId, newEmail);
   }
